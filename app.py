@@ -11,15 +11,15 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Deep Purple Theme + Books Background + High Contrast
+# Deep Purple Theme + Repeating Mini-Books Pattern Background
 st.markdown("""
     <style>
-    /* Rich Purple Gradient Background with Books Wallpaper */
+    /* Repeating Seamless Small Books Pattern Background */
     .stApp {
         background: linear-gradient(rgba(24, 9, 43, 0.88), rgba(46, 16, 82, 0.92)), 
-                    url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1920&auto=format&fit=crop') !important;
-        background-size: cover !important;
-        background-position: center !important;
+                    url('https://img.freepik.com/free-vector/seamless-pattern-with-books-white-background_1308-43187.jpg') !important;
+        background-size: 280px 280px !important;
+        background-repeat: repeat !important;
         background-attachment: fixed !important;
         color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -31,7 +31,7 @@ st.markdown("""
         font-weight: 700 !important;
     }
 
-    /* SOLID BRIGHT INPUT BOXES (100% Readable Text) */
+    /* SOLID BRIGHT INPUT BOXES */
     textarea, input {
         background-color: #ffffff !important;
         color: #1e1b4b !important;
@@ -68,9 +68,9 @@ st.markdown("""
         font-weight: 600 !important;
     }
 
-    /* Glassmorphism Purple Cards */
+    /* Glassmorphism Cards */
     .hero-banner {
-        background: linear-gradient(135deg, rgba(88, 28, 135, 0.9) 0%, rgba(126, 34, 206, 0.9) 100%);
+        background: linear-gradient(135deg, rgba(88, 28, 135, 0.92) 0%, rgba(126, 34, 206, 0.92) 100%);
         border: 2px solid #c084fc;
         border-radius: 16px;
         padding: 24px;
@@ -79,9 +79,9 @@ st.markdown("""
     }
 
     .card {
-        background: rgba(46, 16, 82, 0.85);
+        background: rgba(46, 16, 82, 0.88);
         border: 2px solid #a855f7;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(12px);
         border-radius: 14px;
         padding: 22px;
         margin-bottom: 16px;
@@ -97,7 +97,7 @@ st.markdown("""
         box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
     }
 
-    /* Vibrant Purple & Violet Primary Button */
+    /* Button */
     .stButton>button {
         width: 100%;
         background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%) !important;
@@ -114,7 +114,7 @@ st.markdown("""
         box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6) !important;
     }
 
-    /* Navigation Tabs Styling */
+    /* Navigation Tabs */
     .stTabs [data-baseweb="tab"] {
         color: #e9d5ff !important;
         font-size: 1.1rem !important;
