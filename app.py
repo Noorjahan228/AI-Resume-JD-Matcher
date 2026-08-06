@@ -11,15 +11,15 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Deep Purple Theme + Repeating Mini-Books Pattern Background
+# High-Quality Aesthetic Books Library Background + Deep Purple Overlay
 st.markdown("""
     <style>
-    /* Repeating Seamless Small Books Pattern Background */
+    /* HD Aesthetic Books Library Background */
     .stApp {
-        background: linear-gradient(rgba(24, 9, 43, 0.88), rgba(46, 16, 82, 0.92)), 
-                    url('https://img.freepik.com/free-vector/seamless-pattern-with-books-white-background_1308-43187.jpg') !important;
-        background-size: 280px 280px !important;
-        background-repeat: repeat !important;
+        background: linear-gradient(rgba(24, 9, 43, 0.90), rgba(46, 16, 82, 0.93)), 
+                    url('https://images.unsplash.com/photo-1507842237336-84751139328c?q=80&w=1920&auto=format&fit=crop') !important;
+        background-size: cover !important;
+        background-position: center !important;
         background-attachment: fixed !important;
         color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -70,8 +70,9 @@ st.markdown("""
 
     /* Glassmorphism Cards */
     .hero-banner {
-        background: linear-gradient(135deg, rgba(88, 28, 135, 0.92) 0%, rgba(126, 34, 206, 0.92) 100%);
+        background: linear-gradient(135deg, rgba(88, 28, 135, 0.85) 0%, rgba(126, 34, 206, 0.85) 100%);
         border: 2px solid #c084fc;
+        backdrop-filter: blur(12px);
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 24px;
@@ -79,7 +80,7 @@ st.markdown("""
     }
 
     .card {
-        background: rgba(46, 16, 82, 0.88);
+        background: rgba(46, 16, 82, 0.80);
         border: 2px solid #a855f7;
         backdrop-filter: blur(12px);
         border-radius: 14px;
