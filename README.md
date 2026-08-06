@@ -22,7 +22,20 @@ An AI-powered web application that analyzes resumes against job descriptions to 
 
 ### 💻 Local Setup & Installation
 
-1. Clone the repository:
+## 💻 Local Setup & Installation
+
+1. **Clone the repository:**
    ```bash
    git clone [https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git](https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git)
    cd AI-Resume-JD-Matcher
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the application:**
+   ```bash
+   streamlit run app.py
+   ```
