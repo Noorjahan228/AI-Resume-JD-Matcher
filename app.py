@@ -11,66 +11,79 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# High-Contrast CSS Fix (Forces White Text Everywhere)
+# Premium Contrast CSS Styling
 st.markdown("""
     <style>
-    /* Dark Slate Background */
+    /* Premium Slate Dark Background */
     .stApp {
-        background-color: #0f172a !important;
-        color: #f8fafc !important;
+        background-color: #0b132b !important;
+        color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     
-    /* Make ALL Text & Labels Forced White for High Visibility */
-    p, span, label, div, h1, h2, h3, h4, h5, h6, .stMarkdown {
-        color: #f8fafc !important;
+    /* Forced White Colors for ALL Streamlit Labels & Text */
+    p, span, label, div, h1, h2, h3, h4, h5, h6, .stMarkdown, .stRadio label {
+        color: #ffffff !important;
+        font-weight: 500;
     }
 
-    /* Subtitle & Muted Descriptions */
+    /* Subtitle & Descriptions */
     .sub-text {
-        color: #94a3b8 !important;
+        color: #cbd5e1 !important;
         font-size: 0.95rem;
     }
 
     /* Input Textboxes Styling */
     textarea, input {
-        background-color: #1e293b !important;
+        background-color: #1c2541 !important;
         color: #ffffff !important;
-        border: 1px solid #475569 !important;
+        border: 1px solid #3a506b !important;
         border-radius: 8px !important;
     }
 
-    /* Card Containers */
+    /* Radio Container High-Visibility Background */
+    div[role="radiogroup"] {
+        background-color: #1c2541;
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid #3a506b;
+    }
+
+    /* Premium Glassmorphism Card Containers */
     .card {
-        background: #1e293b;
-        border: 1px solid #334155;
+        background: #1c2541;
+        border: 1px solid #3a506b;
         border-radius: 12px;
         padding: 22px;
         margin-bottom: 16px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
     }
 
-    /* Result Metric Card */
+    /* Result Score Card */
     .score-card {
-        background: #064e3b;
-        border: 1px solid #059669;
+        background: linear-gradient(135deg, #064e3b 0%, #022c22 100%);
+        border: 1px solid #10b981;
         border-radius: 12px;
         padding: 20px;
         text-align: center;
+        box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
     }
 
-    /* Primary Button */
+    /* Gradient Primary Button */
     .stButton>button {
         width: 100%;
-        background-color: #2563eb !important;
+        background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
         color: #ffffff !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         font-size: 1rem !important;
         padding: 0.75rem !important;
         border-radius: 8px !important;
         border: none !important;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
     }
     .stButton>button:hover {
-        background-color: #1d4ed8 !important;
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5) !important;
     }
 
     /* Navigation Tabs High Visibility */
@@ -189,7 +202,7 @@ with tab2:
                 st.markdown(f"""
                 <div class='score-card'>
                     <h1 style='margin:0; color: #34d399 !important; font-size: 3rem;'>{match_percentage}%</h1>
-                    <p style='margin:0; color: #f8fafc !important;'>Estimated Relevance Score</p>
+                    <p style='margin:0; color: #ffffff !important;'>Estimated Relevance Score</p>
                 </div>
                 """, unsafe_allow_html=True)
 
