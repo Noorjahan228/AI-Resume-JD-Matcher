@@ -11,64 +11,81 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# High Visibility & Visual PDF Theme CSS
+# Deep Purple Theme + Books Background + High Contrast
 st.markdown("""
     <style>
-    /* Dark Deep Purple & Navy Background */
+    /* Rich Purple Gradient Background with Books Wallpaper */
     .stApp {
-        background: linear-gradient(135deg, #090d16 0%, #111827 100%) !important;
+        background: linear-gradient(rgba(24, 9, 43, 0.88), rgba(46, 16, 82, 0.92)), 
+                    url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1920&auto=format&fit=crop') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
         color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     
-    /* Global White Text Enforcement */
-    p, span, label, div, h1, h2, h3, h4, h5, h6, .stMarkdown, .stRadio label {
+    /* Forced White Text for Headings & Titles */
+    h1, h2, h3, h4, h5, h6, .stMarkdown {
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    /* SOLID BRIGHT INPUT BOXES (100% Readable Text) */
+    textarea, input {
+        background-color: #ffffff !important;
+        color: #1e1b4b !important;
+        font-weight: 600 !important;
+        border: 2px solid #a855f7 !important;
+        border-radius: 10px !important;
+        font-size: 1rem !important;
+    }
+    textarea::placeholder {
+        color: #64748b !important;
+    }
+
+    /* Radio Inputs Container & Labels */
+    div[role="radiogroup"] {
+        background-color: #2e1065 !important;
+        padding: 12px !important;
+        border-radius: 10px !important;
+        border: 2px solid #a855f7 !important;
+    }
+    .stRadio label, div[role="radiogroup"] span {
         color: #ffffff !important;
         font-weight: 600 !important;
     }
 
-    /* Textarea & Inputs - Solid High Contrast Background */
-    textarea, input {
-        background-color: #1e1b4b !important;
-        color: #ffffff !important;
-        border: 2px solid #6366f1 !important;
-        border-radius: 10px !important;
-        font-size: 1rem !important;
-    }
-    
-    /* File Uploader Box Custom Design */
+    /* File Uploader Container */
     div[data-testid="stFileUploader"] {
-        background-color: #1e1b4b !important;
-        border: 2px dashed #818cf8 !important;
+        background-color: #ffffff !important;
+        border: 2px dashed #a855f7 !important;
         border-radius: 12px !important;
         padding: 15px !important;
     }
-
-    /* Radio Inputs Container */
-    div[role="radiogroup"] {
-        background-color: #1e1b4b !important;
-        padding: 12px !important;
-        border-radius: 10px !important;
-        border: 1px solid #6366f1 !important;
+    div[data-testid="stFileUploader"] span, div[data-testid="stFileUploader"] small {
+        color: #1e1b4b !important;
+        font-weight: 600 !important;
     }
 
-    /* Visual Banner & Feature Cards */
+    /* Glassmorphism Purple Cards */
     .hero-banner {
-        background: linear-gradient(135deg, #312e81 0%, #4c1d95 100%);
-        border: 1px solid #818cf8;
+        background: linear-gradient(135deg, rgba(88, 28, 135, 0.9) 0%, rgba(126, 34, 206, 0.9) 100%);
+        border: 2px solid #c084fc;
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 24px;
-        box-shadow: 0 8px 32px rgba(99, 102, 241, 0.25);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .card {
-        background: #1e1b4b;
-        border: 1px solid #6366f1;
+        background: rgba(46, 16, 82, 0.85);
+        border: 2px solid #a855f7;
+        backdrop-filter: blur(10px);
         border-radius: 14px;
         padding: 22px;
         margin-bottom: 16px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
     }
 
     .score-card {
@@ -77,35 +94,35 @@ st.markdown("""
         border-radius: 14px;
         padding: 24px;
         text-align: center;
-        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
     }
 
-    /* Gradient Primary Button */
+    /* Vibrant Purple & Violet Primary Button */
     .stButton>button {
         width: 100%;
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
+        background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%) !important;
         color: #ffffff !important;
         font-weight: 800 !important;
         font-size: 1.1rem !important;
         padding: 0.85rem !important;
         border-radius: 10px !important;
         border: none !important;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4) !important;
+        box-shadow: 0 4px 15px rgba(168, 85, 247, 0.4) !important;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
-        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6) !important;
+        background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%) !important;
+        box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6) !important;
     }
 
     /* Navigation Tabs Styling */
     .stTabs [data-baseweb="tab"] {
-        color: #cbd5e1 !important;
-        font-size: 1.05rem !important;
+        color: #e9d5ff !important;
+        font-size: 1.1rem !important;
         font-weight: 700 !important;
     }
     .stTabs [aria-selected="true"] {
-        color: #c084fc !important;
-        border-bottom-color: #c084fc !important;
+        color: #f0abfc !important;
+        border-bottom-color: #f0abfc !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -127,8 +144,8 @@ tab1, tab2, tab3 = st.tabs(["Overview", "Resume Matcher", "How It Works"])
 with tab1:
     st.markdown("""
     <div class='hero-banner'>
-        <h1 style='margin:0; font-size: 2.2rem; color: #ffffff !important;'>📄 AI Resume & ATS Matcher</h1>
-        <p style='margin-top:8px; color: #e0e7ff !important; font-size: 1.05rem;'>
+        <h1 style='margin:0; font-size: 2.2rem; color: #ffffff !important;'>📚 AI Resume & Document Analyzer</h1>
+        <p style='margin-top:8px; color: #f3e8ff !important; font-size: 1.05rem;'>
             Upload your PDF resume to check instant compatibility against target job listings using natural language processing.
         </p>
     </div>
@@ -139,24 +156,24 @@ with tab1:
     with col1:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #818cf8 !important;'>📑 1. PDF Parser</h3>
-            <p style='color: #cbd5e1 !important;'>Automatically extracts text content page-by-page directly from your uploaded PDF file.</p>
+            <h3 style='color: #c084fc !important;'>📑 1. PDF Parser</h3>
+            <p style='color: #f3e8ff !important;'>Extracts text page-by-page directly from uploaded PDF resumes and documents.</p>
         </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #c084fc !important;'>📊 2. Match Score</h3>
-            <p style='color: #cbd5e1 !important;'>Calculates cosine similarity metrics to estimate how well your resume matches the job post.</p>
+            <h3 style='color: #f0abfc !important;'>📊 2. Match Score</h3>
+            <p style='color: #f3e8ff !important;'>Calculates cosine similarity metrics to estimate how well your resume matches the job post.</p>
         </div>
         """, unsafe_allow_html=True)
 
     with col3:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #38bdf8 !important;'>🔍 3. Missing Keywords</h3>
-            <p style='color: #cbd5e1 !important;'>Identifies missing technical terms and skills needed to pass automated ATS filters.</p>
+            <h3 style='color: #a855f7 !important;'>🔍 3. Missing Keywords</h3>
+            <p style='color: #f3e8ff !important;'>Identifies missing technical terms and skills needed to pass automated ATS filters.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -165,7 +182,7 @@ with tab1:
 # ==============================================================================
 with tab2:
     st.subheader("Compare Resume with Job Description")
-    st.write("Paste job post requirements and upload your PDF resume below.")
+    st.write("Paste job requirements and upload your PDF resume below.")
     st.markdown("<br>", unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
@@ -238,22 +255,22 @@ with tab3:
     
     st.markdown("""
     <div class='card'>
-        <h3 style='color: #818cf8 !important;'>1. PDF Extraction</h3>
-        <p style='color: #cbd5e1 !important;'>The app parses uploaded PDF files page-by-page using <code>PyPDF2</code> to extract raw text strings.</p>
+        <h3 style='color: #c084fc !important;'>1. PDF Extraction</h3>
+        <p style='color: #f3e8ff !important;'>The app parses uploaded PDF files page-by-page using <code>PyPDF2</code> to extract raw text strings.</p>
     </div>
     
     <div class='card'>
-        <h3 style='color: #c084fc !important;'>2. TF-IDF Vectorization</h3>
-        <p style='color: #cbd5e1 !important;'>Converts cleaned text into mathematical term-frequency vectors after filtering stop words.</p>
+        <h3 style='color: #f0abfc !important;'>2. TF-IDF Vectorization</h3>
+        <p style='color: #f3e8ff !important;'>Converts cleaned text into mathematical term-frequency vectors after filtering stop words.</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #38bdf8 !important;'>3. Cosine Distance Calculation</h3>
-        <p style='color: #cbd5e1 !important;'>Calculates geometric vector alignment to measure document similarity percentage.</p>
+        <h3 style='color: #a855f7 !important;'>3. Cosine Distance Calculation</h3>
+        <p style='color: #f3e8ff !important;'>Calculates geometric vector alignment to measure document similarity percentage.</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #f472b6 !important;'>4. Skill Gap Reporting</h3>
-        <p style='color: #cbd5e1 !important;'>Identifies terms present in the job posting but missing from your resume vector.</p>
+        <h3 style='color: #e879f9 !important;'>4. Skill Gap Reporting</h3>
+        <p style='color: #f3e8ff !important;'>Identifies terms present in the job posting but missing from your resume vector.</p>
     </div>
     """, unsafe_allow_html=True)
