@@ -126,13 +126,18 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Helper function to extract text from PDF
+# Helper function to extract text from PDF securely
 def extract_pdf_text(uploaded_file):
-    reader = PyPDF2.PdfReader(uploaded_file)
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text() or ""
-    return text
+    try:
+        reader = PyPDF2.PdfReader(uploaded_file)
+        text = ""
+        for page in reader.pages:
+            extracted = page.extract_text()
+            if extracted:
+                text += extracted + " "
+        return text.strip()
+    except Exception as e:
+        return ""
 
 # Navigation Tabs
 tab1, tab2, tab3 = st.tabs(["Overview", "Resume Matcher", "How It Works"])
@@ -197,53 +202,63 @@ with tab2:
         resume_text = ""
         if upload_type == "Upload PDF Resume":
             uploaded_file = st.file_uploader("📁 Drag and Drop or Browse PDF Resume File:", type=["pdf"])
-            if uploaded_file:
+            if uploaded_file is not None:
                 resume_text = extract_pdf_text(uploaded_file)
-                st.success("✅ PDF loaded and parsed successfully!")
+                if resume_text:
+                    st.success("✅ PDF loaded and parsed successfully!")
+                    with st.expander("📄 View Parsed Resume Text Preview"):
+                        st.write(resume_text[:400] + "...")
+                else:
+                    st.error("⚠️ Could not extract plain text from this PDF. It might be a scanned image or protected file. Try pasting the text manually below.")
         else:
             resume_text = st.text_area("Paste resume text here:", height=150, placeholder="Paste your resume text content...")
 
     st.markdown("<br>", unsafe_allow_html=True)
 
     if st.button("🚀 Analyze Compatibility Score"):
-        if not jd_text.strip() or not resume_text.strip():
-            st.warning("Please provide both Job Description and Resume details.")
+        if not jd_text.strip():
+            st.warning("⚠️ Please paste the Job Description first.")
+        elif not resume_text.strip():
+            st.warning("⚠️ Please upload a valid PDF resume or paste resume text.")
         else:
-            vectorizer = TfidfVectorizer(stop_words='english')
-            tfidf_matrix = vectorizer.fit_transform([jd_text, resume_text])
-            similarity_score = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
-            match_percentage = round(similarity_score * 100, 2)
-            
-            feature_names = vectorizer.get_feature_names_out()
-            jd_vector = tfidf_matrix[0].toarray()[0]
-            resume_vector = tfidf_matrix[1].toarray()[0]
-            
-            missing_keywords = [
-                feature_names[i] for i in range(len(feature_names)) 
-                if jd_vector[i] > 0 and resume_vector[i] == 0
-            ]
+            try:
+                vectorizer = TfidfVectorizer(stop_words='english')
+                tfidf_matrix = vectorizer.fit_transform([jd_text, resume_text])
+                similarity_score = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
+                match_percentage = round(similarity_score * 100, 2)
+                
+                feature_names = vectorizer.get_feature_names_out()
+                jd_vector = tfidf_matrix[0].toarray()[0]
+                resume_vector = tfidf_matrix[1].toarray()[0]
+                
+                missing_keywords = [
+                    feature_names[i] for i in range(len(feature_names)) 
+                    if jd_vector[i] > 0 and resume_vector[i] == 0
+                ]
 
-            st.markdown("---")
-            st.markdown("### 📊 Match Analysis Output")
-            
-            res_col1, res_col2 = st.columns([1, 2])
-            
-            with res_col1:
-                st.markdown(f"""
-                <div class='score-card'>
-                    <h1 style='margin:0; color: #34d399 !important; font-size: 3.2rem;'>{match_percentage}%</h1>
-                    <p style='margin:0; font-size: 1.1rem;'>Estimated ATS Match Score</p>
-                </div>
-                """, unsafe_allow_html=True)
+                st.markdown("---")
+                st.markdown("### 📊 Match Analysis Output")
+                
+                res_col1, res_col2 = st.columns([1, 2])
+                
+                with res_col1:
+                    st.markdown(f"""
+                    <div class='score-card'>
+                        <h1 style='margin:0; color: #34d399 !important; font-size: 3.2rem;'>{match_percentage}%</h1>
+                        <p style='margin:0; font-size: 1.1rem;'>Estimated ATS Match Score</p>
+                    </div>
+                    """, unsafe_allow_html=True)
 
-            with res_col2:
-                st.markdown("### 🔍 Missing Target Keywords")
-                if missing_keywords:
-                    top_missing = missing_keywords[:15]
-                    st.write("Add these key terms into your resume to pass ATS screening:")
-                    st.write(", ".join([f"`{kw}`" for kw in top_missing]))
-                else:
-                    st.success("Your resume covers all major keywords mentioned in the job description.")
+                with res_col2:
+                    st.markdown("### 🔍 Missing Target Keywords")
+                    if missing_keywords:
+                        top_missing = missing_keywords[:15]
+                        st.write("Add these key terms into your resume to pass ATS screening:")
+                        st.write(", ".join([f"`{kw}`" for kw in top_missing]))
+                    else:
+                        st.success("Your resume covers all major keywords mentioned in the job description.")
+            except Exception as ex:
+                st.error("⚠️ Error calculating similarity. Please make sure both fields contain meaningful text.")
 
 # ==============================================================================
 # TAB 3: HOW IT WORKS
