@@ -1,14 +1,28 @@
-# 🤖 AI Resume Matcher & Keyword Gap Analyzer
+# 📄 AI Resume & Job Description Matcher
 
-An AI-powered web application built with **Streamlit** and **Scikit-Learn** that calculates the match percentage between a Resume and a Job Description (JD) using TF-IDF Vectorization and Cosine Similarity. It also identifies missing key skills/words.
+An AI-powered web application that analyzes resumes against job descriptions to provide a match score, missing keywords, and actionable suggestions to improve resume ATS compatibility.
 
-## 🚀 Features
-- 📊 **Match Percentage:** Calculates exact similarity score using Cosine Similarity.
-- 💡 **Missing Keywords:** Displays key words present in JD but missing in the resume.
-- ⚡ **Interactive UI:** Built using Streamlit for an easy-to-use interface.
+---
 
-## 🛠️ Tech Stack
-- Python
-- Streamlit
-- Scikit-Learn
--
+### 🚀 Key Features
+- 📊 **Match Percentage:** Calculates relevance score between resume and job description.
+- 🔍 **Keyword Gap Analysis:** Identifies missing technical skills & keywords.
+- 💡 **AI Recommendations:** Provides actionable tips to optimize your resume.
+- ⚡ **Interactive UI:** Built with Streamlit for a fast and clean user experience.
+
+---
+
+### 🛠️ Tech Stack
+- **Language:** Python
+- **Machine Learning / NLP:** Scikit-Learn, TF-IDF / Cosine Similarity
+- **Frontend / Framework:** Streamlit
+- **Text Processing:** PyPDF2 / pdfplumber
+
+---
+
+### 💻 Local Setup & Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git](https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git)
+   cd AI-Resume-JD-Matcher
