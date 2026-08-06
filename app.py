@@ -3,95 +3,74 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import PyPDF2
 
-# Page Configuration
+# Page Setup
 st.set_page_config(
-    page_title="NexusAI — Resume & JD Matcher",
-    page_icon="⚡",
+    page_title="Resume & Job Matcher",
+    page_icon="🎯",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="collapsed"
 )
 
-# Custom Tri-Color Theme (Blue + Purple + Emerald)
+# Human-Centric Minimal Professional CSS
 st.markdown("""
     <style>
-    /* Gradient Background (Deep Blue to Royal Purple) */
+    /* Dark Slate Background for High Contrast */
     .stApp {
-        background: linear-gradient(135deg, #0b0f19 0%, #1e1b4b 50%, #311042 100%);
-        color: #f3f4f6;
+        background-color: #0f172a;
+        color: #f8fafc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     
-    /* Premium Glassmorphism Cards */
-    .premium-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(168, 85, 247, 0.25);
-        border-radius: 16px;
-        padding: 24px;
-        margin-bottom: 20px;
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        transition: all 0.3s ease;
-    }
-    .premium-card:hover {
-        border-color: rgba(168, 85, 247, 0.6);
-        transform: translateY(-3px);
+    /* Clean Cards with Subtle Borders */
+    .card {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 16px;
     }
     
-    /* Result Metric Card (Blue & Green Accent) */
-    .metric-card {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        border-radius: 16px;
-        padding: 24px;
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(10, 185, 129, 0.2);
+    .card h3 {
+        color: #38bdf8;
+        margin-bottom: 8px;
+    }
+    
+    .card p {
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
-    /* Tri-Color Gradient Button */
+    /* Score Badge */
+    .score-card {
+        background: #064e3b;
+        border: 1px solid #059669;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    /* Clean Primary Button */
     .stButton>button {
         width: 100%;
-        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #10b981 100%);
-        color: white;
-        font-weight: 700;
-        font-size: 1.05rem;
-        padding: 0.85rem;
-        border-radius: 12px;
+        background-color: #2563eb;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.75rem;
+        border-radius: 8px;
         border: none;
-        box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
-        transition: all 0.3s ease;
+        transition: background-color 0.2s ease;
     }
     .stButton>button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(124, 58, 237, 0.6);
+        background-color: #1d4ed8;
     }
 
-    /* Purple Badge Tag */
-    .badge {
-        display: inline-block;
-        padding: 6px 16px;
-        border-radius: 30px;
-        font-size: 0.85rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, rgba(124, 58, 237, 0.3) 0%, rgba(37, 99, 235, 0.3) 100%);
-        color: #c084fc;
-        border: 1px solid rgba(192, 132, 252, 0.4);
-        margin-bottom: 12px;
-    }
-
-    /* Tab Header Styling */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 12px;
-    }
-    .stTabs [data-baseweb="tab"] {
-        background-color: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-        padding: 10px 20px;
-        color: #9ca3af;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-    }
+    /* Tab Headers */
     .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%) !important;
-        color: white !important;
-        font-weight: bold;
+        color: #38bdf8 !important;
+        border-bottom-color: #38bdf8 !important;
+        font-weight: 600;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -104,82 +83,77 @@ def extract_pdf_text(uploaded_file):
         text += page.extract_text() or ""
     return text
 
-# Navigation Tabs Setup
-tab1, tab2, tab3 = st.tabs(["🏠 Introduction", "⚡ AI Resume Matcher", "⚙️ How It Works"])
+# Navigation Tabs
+tab1, tab2, tab3 = st.tabs(["Overview", "Resume Matcher", "How It Works"])
 
 # ==============================================================================
-# PAGE 1: INTRODUCTION
+# TAB 1: OVERVIEW (Humanized Content)
 # ==============================================================================
 with tab1:
-    st.markdown("<span class='badge'>✦ Tri-Color AI Engine</span>", unsafe_allow_html=True)
-    st.title("Welcome to NexusAI Matcher 🚀")
-    st.write("An intelligent NLP-driven application designed to bridge the gap between job candidates and enterprise Applicant Tracking Systems (ATS).")
+    st.title("Smart Resume & Job Description Matcher 🎯")
+    st.write("A practical tool built to help job seekers optimize their resumes for Applicant Tracking Systems (ATS) before applying.")
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     
-    col_a, col_b, col_c = st.columns(3)
+    col1, col2, col3 = st.columns(3)
     
-    with col_a:
+    with col1:
         st.markdown("""
-        <div class='premium-card'>
-            <h3 style='color: #60a5fa;'>🎯 98% Precision</h3>
-            <p style='color: #9ca3af;'>Powered by TF-IDF vectorization and Cosine Similarity math for accurate scoring.</p>
+        <div class='card'>
+            <h3>📊 Match Scoring</h3>
+            <p>Compares keywords and term relevance between your resume and target job listings to estimate ATS alignment.</p>
         </div>
         """, unsafe_allow_html=True)
         
-    with col_b:
+    with col2:
         st.markdown("""
-        <div class='premium-card'>
-            <h3 style='color: #c084fc;'>🔍 Gap Analysis</h3>
-            <p style='color: #9ca3af;'>Extracts missing technical terms and soft skills instantly from your candidate profile.</p>
+        <div class='card'>
+            <h3>🔍 Skill Gap Detection</h3>
+            <p>Highlights important skills or keywords present in the job posting that are currently missing from your resume.</p>
         </div>
         """, unsafe_allow_html=True)
 
-    with col_c:
+    with col3:
         st.markdown("""
-        <div class='premium-card'>
-            <h3 style='color: #34d399;'>⚡ PDF Processing</h3>
-            <p style='color: #9ca3af;'>Upload PDF resumes seamlessly or paste raw plain text into the workspace.</p>
+        <div class='card'>
+            <h3>📑 PDF & Text Support</h3>
+            <p>Easily upload your PDF resume directly or paste text content to get instant feedback.</p>
         </div>
         """, unsafe_allow_html=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.info("👉 Click on the **'⚡ AI Resume Matcher'** tab above to analyze your resume!")
 
 # ==============================================================================
-# PAGE 2: MAIN FUNCTIONALITY (AI MATCHING APP)
+# TAB 2: RESUME MATCHER (Core Functionality)
 # ==============================================================================
 with tab2:
-    st.title("📄 Resume vs Job Description Analyzer")
-    st.write("Compare your resume content against job post requirements in real time.")
-    st.markdown("---")
-
+    st.subheader("Compare Resume with Job Description")
+    st.write("Paste the job details and your resume to check compatibility.")
+    
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown("### 📌 1. Target Job Description")
-        jd_text = st.text_area("Paste JD Text Here:", height=240, placeholder="Paste job requirements, skills, and qualifications...")
+        st.markdown("##### Job Description")
+        jd_text = st.text_area("Paste job requirements here:", height=220, placeholder="Example: Looking for a Python Developer experienced with SQL, Data Analysis, and APIs...")
 
     with col2:
-        st.markdown("### 📑 2. Candidate Resume")
-        upload_type = st.radio("Select Input Format:", ["Upload PDF Resume", "Paste Text Input"], horizontal=True)
+        st.markdown("##### Your Resume")
+        upload_type = st.radio("Choose input method:", ["Upload PDF Resume", "Paste Plain Text"], horizontal=True)
         
         resume_text = ""
         if upload_type == "Upload PDF Resume":
-            uploaded_file = st.file_uploader("Upload PDF File:", type=["pdf"])
+            uploaded_file = st.file_uploader("Upload PDF File", type=["pdf"])
             if uploaded_file:
                 resume_text = extract_pdf_text(uploaded_file)
-                st.success("✅ PDF processed successfully!")
+                st.success("PDF loaded successfully.")
         else:
-            resume_text = st.text_area("Paste Resume Text Here:", height=170, placeholder="Paste your resume content...")
+            resume_text = st.text_area("Paste resume text here:", height=150, placeholder="Paste your resume content...")
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    if st.button("🚀 Analyze Compatibility Score"):
+    if st.button("Check Match Score"):
         if not jd_text.strip() or not resume_text.strip():
-            st.warning("⚠️ Please provide both Job Description and Resume details to analyze.")
+            st.warning("Please provide both Job Description and Resume details.")
         else:
-            # Algorithmic Calculation
+            # Algorithm Processing
             vectorizer = TfidfVectorizer(stop_words='english')
             tfidf_matrix = vectorizer.fit_transform([jd_text, resume_text])
             similarity_score = cosine_similarity(tfidf_matrix[0:1], tfidf_matrix[1:2])[0][0]
@@ -196,71 +170,52 @@ with tab2:
 
             # Results View
             st.markdown("---")
-            st.subheader("📊 Match Analysis Output")
+            st.markdown("### Match Analysis Output")
             
             res_col1, res_col2 = st.columns([1, 2])
             
             with res_col1:
                 st.markdown(f"""
-                <div class='metric-card'>
-                    <h2 style='margin:0; font-size: 2.8rem; color: #34d399;'>{match_percentage}%</h2>
-                    <p style='margin:0; color: #f3f4f6; font-size: 1.1rem;'>Compatibility Score</p>
+                <div class='score-card'>
+                    <h1 style='margin:0; color: #34d399; font-size: 3rem;'>{match_percentage}%</h1>
+                    <p style='margin:0; color: #f8fafc;'>Estimated Relevance Score</p>
                 </div>
                 """, unsafe_allow_html=True)
-                
-                if match_percentage >= 70:
-                    st.success("🎯 Strong Match! Excellent candidate fit.")
-                elif match_percentage >= 45:
-                    st.warning("⚠️ Moderate Match. Consider adding missing keywords.")
-                else:
-                    st.error("❌ Low Match. Tailor your resume closer to the JD.")
 
             with res_col2:
-                st.markdown("### 🔍 Missing Target Keywords")
+                st.markdown("##### Missing Keywords")
                 if missing_keywords:
                     top_missing = missing_keywords[:15]
-                    st.write("Add these key terms into your resume to pass ATS filters:")
+                    st.write("Consider adding relevant terms from this list to improve resume match:")
                     st.write(", ".join([f"`{kw}`" for kw in top_missing]))
                 else:
-                    st.success("🎉 Outstanding! Your resume covers all key terms from the JD.")
+                    st.success("Your resume covers all major keywords mentioned in the job description.")
 
 # ==============================================================================
-# PAGE 3: HOW IT WORKS / WORKING PROCESS
+# TAB 3: HOW IT WORKS (Simple & Clean Explanation)
 # ==============================================================================
 with tab3:
-    st.title("⚙️ System Architecture & Workflow")
-    st.write("Learn how NexusAI extracts, parses, and scores document similarity.")
-    st.markdown("---")
-
+    st.subheader("How This App Works")
+    st.write("A simple step-by-step breakdown of the text-matching logic used under the hood.")
+    
     st.markdown("""
-    <div class='premium-card'>
-        <h3 style='color: #60a5fa;'>Step 1: Text Extraction & Parsing 📄</h3>
-        <p style='color: #9ca3af;'>
-            When a PDF is uploaded, <code>PyPDF2</code> extracts raw text streams page-by-page. For text inputs, the raw string is normalized directly.
-        </p>
+    <div class='card'>
+        <h3>1. Text Ingestion</h3>
+        <p>The app parses your uploaded PDF using <code>PyPDF2</code> or reads pasted text directly to clean and prepare the content for analysis.</p>
     </div>
     
-    <div class='premium-card'>
-        <h3 style='color: #c084fc;'>Step 2: TF-IDF Vectorization 🧮</h3>
-        <p style='color: #9ca3af;'>
-            The system applies <b>Term Frequency - Inverse Document Frequency (TF-IDF)</b> filtering out standard English stop-words. Text content is converted into numerical vector arrays.
-        </p>
+    <div class='card'>
+        <h3>2. TF-IDF Vectorization</h3>
+        <p>Using <code>Scikit-Learn</code>, both texts are converted into mathematical frequency vectors after removing common English stop-words (e.g., 'the', 'is', 'at').</p>
     </div>
 
-    <div class='premium-card'>
-        <h3 style='color: #34d399;'>Step 3: Cosine Similarity Metric 📐</h3>
-        <p style='color: #9ca3af;'>
-            The angular distance between the Job Description vector and the Resume vector is calculated using <b>Cosine Similarity</b>:
-        </p>
-        <p style='text-align: center; font-family: monospace; color: #34d399; font-size: 1.2rem;'>
-            Cosine Similarity = (A · B) / (||A|| ||B||)
-        </p>
+    <div class='card'>
+        <h3>3. Cosine Similarity Match</h3>
+        <p>The app calculates the mathematical angle between the two text vectors using Cosine Similarity to determine how closely the resume aligns with the job description.</p>
     </div>
 
-    <div class='premium-card'>
-        <h3 style='color: #f472b6;'>Step 4: Keyword Gap Extraction 🔍</h3>
-        <p style='color: #9ca3af;'>
-            Tokens with non-zero weights in the JD vector that evaluate to zero in the Resume vector are flagged as <b>Missing Keywords</b> and reported immediately.
-        </p>
+    <div class='card'>
+        <h3>4. Keyword Gap Identification</h3>
+        <p>Keywords present in the job description vector but missing in the resume vector are filtered out and displayed as recommendations.</p>
     </div>
     """, unsafe_allow_html=True)
