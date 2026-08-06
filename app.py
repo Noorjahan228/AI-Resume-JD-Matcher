@@ -11,17 +11,17 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Premium Contrast CSS Styling
+# High-Contrast CSS with Blue & Purple Accent Styling
 st.markdown("""
     <style>
-    /* Premium Slate Dark Background */
+    /* Dark Slate Background with Deep Blue/Purple Tint */
     .stApp {
-        background-color: #0b132b !important;
+        background: linear-gradient(135deg, #0b0f19 0%, #111827 100%) !important;
         color: #ffffff !important;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
     
-    /* Forced White Colors for ALL Streamlit Labels & Text */
+    /* Forced White Colors for Text Readability */
     p, span, label, div, h1, h2, h3, h4, h5, h6, .stMarkdown, .stRadio label {
         color: #ffffff !important;
         font-weight: 500;
@@ -35,28 +35,28 @@ st.markdown("""
 
     /* Input Textboxes Styling */
     textarea, input {
-        background-color: #1c2541 !important;
+        background-color: #1e293b !important;
         color: #ffffff !important;
-        border: 1px solid #3a506b !important;
+        border: 1px solid #475569 !important;
         border-radius: 8px !important;
     }
 
     /* Radio Container High-Visibility Background */
     div[role="radiogroup"] {
-        background-color: #1c2541;
+        background-color: #1e293b;
         padding: 10px;
         border-radius: 8px;
-        border: 1px solid #3a506b;
+        border: 1px solid #475569;
     }
 
-    /* Premium Glassmorphism Card Containers */
+    /* Card Containers with Purple-Blue Border Glow */
     .card {
-        background: #1c2541;
-        border: 1px solid #3a506b;
+        background: #1e293b;
+        border: 1px solid #6366f1;
         border-radius: 12px;
         padding: 22px;
         margin-bottom: 16px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
     }
 
     /* Result Score Card */
@@ -69,32 +69,33 @@ st.markdown("""
         box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
     }
 
-    /* Gradient Primary Button */
+    /* Blue to Purple Gradient Primary Button */
     .stButton>button {
         width: 100%;
-        background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%) !important;
+        background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%) !important;
         color: #ffffff !important;
         font-weight: 700 !important;
         font-size: 1rem !important;
         padding: 0.75rem !important;
         border-radius: 8px !important;
         border: none !important;
-        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3) !important;
+        transition: all 0.3s ease;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%) !important;
-        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.5) !important;
+        background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%) !important;
+        box-shadow: 0 6px 18px rgba(124, 58, 237, 0.5) !important;
     }
 
-    /* Navigation Tabs High Visibility */
+    /* Navigation Tabs High Visibility with Purple Accent */
     .stTabs [data-baseweb="tab"] {
         color: #94a3b8 !important;
         font-size: 1rem !important;
         font-weight: 600 !important;
     }
     .stTabs [aria-selected="true"] {
-        color: #38bdf8 !important;
-        border-bottom-color: #38bdf8 !important;
+        color: #a855f7 !important;
+        border-bottom-color: #a855f7 !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -124,7 +125,7 @@ with tab1:
     with col1:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #38bdf8 !important;'>📊 Match Scoring</h3>
+            <h3 style='color: #818cf8 !important;'>📊 Match Scoring</h3>
             <p class='sub-text'>Compares keywords and term relevance between your resume and target job listings to estimate ATS alignment.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -132,7 +133,7 @@ with tab1:
     with col2:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #38bdf8 !important;'>🔍 Skill Gap Detection</h3>
+            <h3 style='color: #c084fc !important;'>🔍 Skill Gap Detection</h3>
             <p class='sub-text'>Highlights important skills or keywords present in the job posting that are currently missing from your resume.</p>
         </div>
         """, unsafe_allow_html=True)
@@ -224,22 +225,22 @@ with tab3:
     
     st.markdown("""
     <div class='card'>
-        <h3 style='color: #38bdf8 !important;'>1. Text Ingestion</h3>
+        <h3 style='color: #818cf8 !important;'>1. Text Ingestion</h3>
         <p class='sub-text'>The app parses your uploaded PDF using <code>PyPDF2</code> or reads pasted text directly to clean and prepare the content for analysis.</p>
     </div>
     
     <div class='card'>
-        <h3 style='color: #38bdf8 !important;'>2. TF-IDF Vectorization</h3>
+        <h3 style='color: #c084fc !important;'>2. TF-IDF Vectorization</h3>
         <p class='sub-text'>Using <code>Scikit-Learn</code>, both texts are converted into mathematical frequency vectors after removing common English stop-words (e.g., 'the', 'is', 'at').</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #38bdf8 !important;'>3. Cosine Similarity Match</h3>
+        <h3 style='color: #818cf8 !important;'>3. Cosine Similarity Match</h3>
         <p class='sub-text'>The app calculates the mathematical angle between the two text vectors using Cosine Similarity to determine how closely the resume aligns with the job description.</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #38bdf8 !important;'>4. Keyword Gap Identification</h3>
+        <h3 style='color: #c084fc !important;'>4. Keyword Gap Identification</h3>
         <p class='sub-text'>Keywords present in the job description vector but missing in the resume vector are filtered out and displayed as recommendations.</p>
     </div>
     """, unsafe_allow_html=True)
