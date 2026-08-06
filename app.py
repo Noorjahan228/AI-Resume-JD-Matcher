@@ -11,49 +11,60 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# High-Quality Aesthetic Books Library Background + Deep Purple Overlay
+# Custom High-Visibility Styling
 st.markdown("""
     <style>
-    /* HD Aesthetic Books Library Background */
+    /* Background Image with Deep Purple Overlay */
     .stApp {
-        background: linear-gradient(rgba(24, 9, 43, 0.90), rgba(46, 16, 82, 0.93)), 
+        background: linear-gradient(rgba(15, 23, 42, 0.88), rgba(88, 28, 135, 0.90)), 
                     url('https://images.unsplash.com/photo-1507842237336-84751139328c?q=80&w=1920&auto=format&fit=crop') !important;
         background-size: cover !important;
         background-position: center !important;
         background-attachment: fixed !important;
-        color: #ffffff !important;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    }
-    
-    /* Forced White Text for Headings & Titles */
-    h1, h2, h3, h4, h5, h6, .stMarkdown {
-        color: #ffffff !important;
-        font-weight: 700 !important;
     }
 
-    /* SOLID BRIGHT INPUT BOXES */
+    /* FORCED WHITE NAVIGATION TABS AT TOP */
+    button[data-baseweb="tab"] {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 8px 8px 0px 0px !important;
+        margin-right: 8px !important;
+        padding: 10px 20px !important;
+    }
+    button[data-baseweb="tab"] div, button[data-baseweb="tab"] p {
+        color: #ffffff !important;
+        font-size: 1.1rem !important;
+        font-weight: 700 !important;
+    }
+    button[aria-selected="true"] {
+        background-color: #a855f7 !important;
+        border-bottom: 3px solid #f0abfc !important;
+    }
+    button[aria-selected="true"] div, button[aria-selected="true"] p {
+        color: #ffffff !important;
+        font-weight: 800 !important;
+    }
+
+    /* Global Headings & Text */
+    h1, h2, h3, h4, h5, h6, p, span, label, div {
+        color: #ffffff !important;
+    }
+
+    /* SOLID WHITE INPUT BOXES */
     textarea, input {
         background-color: #ffffff !important;
-        color: #1e1b4b !important;
+        color: #0f172a !important;
         font-weight: 600 !important;
         border: 2px solid #a855f7 !important;
         border-radius: 10px !important;
         font-size: 1rem !important;
     }
-    textarea::placeholder {
-        color: #64748b !important;
-    }
 
-    /* Radio Inputs Container & Labels */
+    /* Radio Box Container */
     div[role="radiogroup"] {
-        background-color: #2e1065 !important;
-        padding: 12px !important;
+        background-color: rgba(30, 27, 75, 0.9) !important;
+        padding: 10px !important;
         border-radius: 10px !important;
         border: 2px solid #a855f7 !important;
-    }
-    .stRadio label, div[role="radiogroup"] span {
-        color: #ffffff !important;
-        font-weight: 600 !important;
     }
 
     /* File Uploader Container */
@@ -64,15 +75,14 @@ st.markdown("""
         padding: 15px !important;
     }
     div[data-testid="stFileUploader"] span, div[data-testid="stFileUploader"] small {
-        color: #1e1b4b !important;
-        font-weight: 600 !important;
+        color: #0f172a !important;
+        font-weight: 700 !important;
     }
 
     /* Glassmorphism Cards */
     .hero-banner {
-        background: linear-gradient(135deg, rgba(88, 28, 135, 0.85) 0%, rgba(126, 34, 206, 0.85) 100%);
+        background: linear-gradient(135deg, rgba(88, 28, 135, 0.9) 0%, rgba(126, 34, 206, 0.9) 100%);
         border: 2px solid #c084fc;
-        backdrop-filter: blur(12px);
         border-radius: 16px;
         padding: 24px;
         margin-bottom: 24px;
@@ -80,9 +90,9 @@ st.markdown("""
     }
 
     .card {
-        background: rgba(46, 16, 82, 0.80);
+        background: rgba(30, 27, 75, 0.85);
         border: 2px solid #a855f7;
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(10px);
         border-radius: 14px;
         padding: 22px;
         margin-bottom: 16px;
@@ -98,7 +108,7 @@ st.markdown("""
         box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
     }
 
-    /* Button */
+    /* Primary Action Button */
     .stButton>button {
         width: 100%;
         background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%) !important;
@@ -112,18 +122,6 @@ st.markdown("""
     }
     .stButton>button:hover {
         background: linear-gradient(135deg, #6d28d9 0%, #a855f7 100%) !important;
-        box-shadow: 0 6px 20px rgba(168, 85, 247, 0.6) !important;
-    }
-
-    /* Navigation Tabs */
-    .stTabs [data-baseweb="tab"] {
-        color: #e9d5ff !important;
-        font-size: 1.1rem !important;
-        font-weight: 700 !important;
-    }
-    .stTabs [aria-selected="true"] {
-        color: #f0abfc !important;
-        border-bottom-color: #f0abfc !important;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -145,8 +143,8 @@ tab1, tab2, tab3 = st.tabs(["Overview", "Resume Matcher", "How It Works"])
 with tab1:
     st.markdown("""
     <div class='hero-banner'>
-        <h1 style='margin:0; font-size: 2.2rem; color: #ffffff !important;'>📚 AI Resume & Document Analyzer</h1>
-        <p style='margin-top:8px; color: #f3e8ff !important; font-size: 1.05rem;'>
+        <h1 style='margin:0; font-size: 2.2rem;'>📚 AI Resume & Document Analyzer</h1>
+        <p style='margin-top:8px; font-size: 1.05rem;'>
             Upload your PDF resume to check instant compatibility against target job listings using natural language processing.
         </p>
     </div>
@@ -157,8 +155,8 @@ with tab1:
     with col1:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #c084fc !important;'>📑 1. PDF Parser</h3>
-            <p style='color: #f3e8ff !important;'>Extracts text page-by-page directly from uploaded PDF resumes and documents.</p>
+            <h3 style='color: #f0abfc !important;'>📑 1. PDF Parser</h3>
+            <p>Extracts text page-by-page directly from uploaded PDF resumes and documents.</p>
         </div>
         """, unsafe_allow_html=True)
         
@@ -166,15 +164,15 @@ with tab1:
         st.markdown("""
         <div class='card'>
             <h3 style='color: #f0abfc !important;'>📊 2. Match Score</h3>
-            <p style='color: #f3e8ff !important;'>Calculates cosine similarity metrics to estimate how well your resume matches the job post.</p>
+            <p>Calculates cosine similarity metrics to estimate how well your resume matches the job post.</p>
         </div>
         """, unsafe_allow_html=True)
 
     with col3:
         st.markdown("""
         <div class='card'>
-            <h3 style='color: #a855f7 !important;'>🔍 3. Missing Keywords</h3>
-            <p style='color: #f3e8ff !important;'>Identifies missing technical terms and skills needed to pass automated ATS filters.</p>
+            <h3 style='color: #f0abfc !important;'>🔍 3. Missing Keywords</h3>
+            <p>Identifies missing technical terms and skills needed to pass automated ATS filters.</p>
         </div>
         """, unsafe_allow_html=True)
 
@@ -234,7 +232,7 @@ with tab2:
                 st.markdown(f"""
                 <div class='score-card'>
                     <h1 style='margin:0; color: #34d399 !important; font-size: 3.2rem;'>{match_percentage}%</h1>
-                    <p style='margin:0; color: #ffffff !important; font-size: 1.1rem;'>Estimated ATS Match Score</p>
+                    <p style='margin:0; font-size: 1.1rem;'>Estimated ATS Match Score</p>
                 </div>
                 """, unsafe_allow_html=True)
 
@@ -256,22 +254,22 @@ with tab3:
     
     st.markdown("""
     <div class='card'>
-        <h3 style='color: #c084fc !important;'>1. PDF Extraction</h3>
-        <p style='color: #f3e8ff !important;'>The app parses uploaded PDF files page-by-page using <code>PyPDF2</code> to extract raw text strings.</p>
+        <h3 style='color: #f0abfc !important;'>1. PDF Extraction</h3>
+        <p>The app parses uploaded PDF files page-by-page using <code>PyPDF2</code> to extract raw text strings.</p>
     </div>
     
     <div class='card'>
         <h3 style='color: #f0abfc !important;'>2. TF-IDF Vectorization</h3>
-        <p style='color: #f3e8ff !important;'>Converts cleaned text into mathematical term-frequency vectors after filtering stop words.</p>
+        <p>Converts cleaned text into mathematical term-frequency vectors after filtering stop words.</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #a855f7 !important;'>3. Cosine Distance Calculation</h3>
-        <p style='color: #f3e8ff !important;'>Calculates geometric vector alignment to measure document similarity percentage.</p>
+        <h3 style='color: #f0abfc !important;'>3. Cosine Distance Calculation</h3>
+        <p>Calculates geometric vector alignment to measure document similarity percentage.</p>
     </div>
 
     <div class='card'>
-        <h3 style='color: #e879f9 !important;'>4. Skill Gap Reporting</h3>
-        <p style='color: #f3e8ff !important;'>Identifies terms present in the job posting but missing from your resume vector.</p>
+        <h3 style='color: #f0abfc !important;'>4. Skill Gap Reporting</h3>
+        <p>Identifies terms present in the job posting but missing from your resume vector.</p>
     </div>
     """, unsafe_allow_html=True)
