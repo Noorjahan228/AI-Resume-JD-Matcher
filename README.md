@@ -35,5 +35,6 @@ An AI-powered application designed to analyze resumes against Job Descriptions (
 
 1. **Clone the repository:**
 ```bash
-git clone [https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git](https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git)
+git clone https://github.com/Noorjahan228/AI-Resume-JD-Matcher.git
 cd AI-Resume-JD-Matcher
+'''
